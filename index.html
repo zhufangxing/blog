@@ -61,99 +61,6 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-leetcode-Isomorphic String" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/08/13/leetcode-Isomorphic String/" class="article-date">
-  <time datetime="2015-08-13T06:20:28.189Z" itemprop="datePublished">2015-08-13</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/08/13/leetcode-Isomorphic String/">Leetcode -- Isomorphic Strings -- python解法</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Isomorphic_Strings">Isomorphic Strings</h2><p>Given two strings s and t, determine if they are isomorphic.</p>
-<p>Two strings are isomorphic if the characters in s can be replaced to get t.</p>
-<p>All occurrences of a character must be replaced with another character while preserving the order of characters. No two characters may map to the same character but a character may map to itself.</p>
-<p>For example,<br>Given “egg”, “add”, return true.</p>
-<p>Given “foo”, “bar”, return false.</p>
-<p>Given “paper”, “title”, return true.</p>
-<h2 id="解题思路">解题思路</h2><p>基本思路就是为每个string创建一个字典，保存该string已经遍历过的字符类别，value取0,1,2…。每遍历一个字符，便可比较是否同时在各自的字典里，并且value值是否相同，如果不统一便返回False.</p>
-<h2 id="python_code">python code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="comment"># @param &#123;string&#125; s</span></span><br><span class="line">    <span class="comment"># @param &#123;string&#125; t</span></span><br><span class="line">    <span class="comment"># @return &#123;boolean&#125;</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isIsomorphic</span><span class="params">(self, s, t)</span>:</span></span><br><span class="line">        dicS=&#123;&#125;</span><br><span class="line">        dicT=&#123;&#125;</span><br><span class="line">        <span class="keyword">if</span> len(s)!=len(t):</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(s)):</span><br><span class="line">            charS=s[i]</span><br><span class="line">            charT=t[i]</span><br><span class="line">            <span class="keyword">if</span> (dicS.has_key(charS) <span class="keyword">and</span> <span class="keyword">not</span> dicT.has_key(charT)) <span class="keyword">or</span> (<span class="keyword">not</span> dicS.has_key(charS) <span class="keyword">and</span> dicT.has_key(charT)):</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">            <span class="keyword">elif</span> dicS.has_key(charS) <span class="keyword">and</span> dicT.has_key(charT):</span><br><span class="line">                <span class="keyword">if</span> dicS[charS] != dicT[charT]:</span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                dicS[charS] = len(dicS)</span><br><span class="line">                dicT[charT] = len(dicT)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">True</span></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="zhufangxing.com/2015/08/13/leetcode-Isomorphic String/" data-id="cidixtq970001dcanu7bhn79h" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-leetcode-ICourse Schedule" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/08/13/leetcode-ICourse Schedule/" class="article-date">
-  <time datetime="2015-08-13T06:20:28.189Z" itemprop="datePublished">2015-08-13</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/08/13/leetcode-ICourse Schedule/">Leetcode -- Course Schedule  -- python解法</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Course_Schedule">Course Schedule</h2><p>There are a total of n courses you have to take, labeled from 0 to n - 1.</p>
-<p>Some courses may have prerequisites, for example to take course 0 you have to first take course 1, which is expressed as a pair: [0,1]</p>
-<p>Given the total number of courses and a list of prerequisite pairs, is it possible for you to finish all courses?</p>
-<p>For example:</p>
-<p>2, [[1,0]]<br>There are a total of 2 courses to take. To take course 1 you should have finished course 0. So it is possible.</p>
-<p>2, [[1,0],[0,1]]<br>There are a total of 2 courses to take. To take course 1 you should have finished course 0, and to take course 0 you should also have finished course 1. So it is impossible.</p>
-<h2 id="解题思路">解题思路</h2><p>本题很明显是一个关于是否有回路的检测问题。因而想起本科的课程中提到过一个类似的问题，解题方法如下：</p>
-<ul>
-<li>1.检测出所有无依赖的课程；</li>
-<li>2.删除这些无依赖的课程，以及所有设计这些课程的依赖关系；</li>
-<li>3.如果所有依赖关系均被删除， So it is possible；如果这次循环没有删除一门课程，So it is impossible；如果是其他情况，继续执行1。</li>
-</ul>
-<h2 id="python_code">python code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="comment"># @param &#123;integer&#125; numCourses</span></span><br><span class="line">    <span class="comment"># @param &#123;integer[][]&#125; prerequisites</span></span><br><span class="line">    <span class="comment"># @return &#123;boolean&#125;</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">canFinish</span><span class="params">(self, numCourses, prerequisites)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> numCourses&lt;<span class="number">2</span> <span class="keyword">or</span> len(prerequisites)&lt;<span class="number">2</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">        <span class="comment">#prerequisites.sort()</span></span><br><span class="line">        <span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">            count=<span class="number">0</span></span><br><span class="line">            mark = [<span class="keyword">True</span>]*numCourses</span><br><span class="line">            <span class="keyword">for</span> pre <span class="keyword">in</span> prerequisites:</span><br><span class="line">                mark[pre[<span class="number">0</span>]] = <span class="keyword">False</span></span><br><span class="line">            <span class="keyword">for</span> pre <span class="keyword">in</span> prerequisites:</span><br><span class="line">                <span class="keyword">if</span> mark[pre[<span class="number">1</span>]]:</span><br><span class="line">                    count+=<span class="number">1</span></span><br><span class="line">                    prerequisites.remove(pre)</span><br><span class="line">            <span class="keyword">if</span> prerequisites==[]:</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">            <span class="keyword">elif</span> count==<span class="number">0</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">False</span></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="zhufangxing.com/2015/08/13/leetcode-ICourse Schedule/" data-id="cidixtq970002dcanx0em3kfz" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
     <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/08/13/hello-world/" class="article-date">
@@ -189,7 +96,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="zhufangxing.com/2015/08/13/hello-world/" data-id="cidixtq970003dcan7spoxk6b" class="article-share-link">Share</a>
+      <a data-url="zhufangxing.com/2015/08/13/hello-world/" data-id="cidixxw3200064canlglwkipn" class="article-share-link">Share</a>
       
       
     </footer>
@@ -229,7 +136,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="zhufangxing.com/2015/08/13/c++函数/" data-id="cidixtq7w0000dcanjnul9diq" class="article-share-link">Share</a>
+      <a data-url="zhufangxing.com/2015/08/13/c++函数/" data-id="cidixxw1r00004can87h02ojl" class="article-share-link">Share</a>
       
       
     </footer>
@@ -266,9 +173,106 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="zhufangxing.com/2014/07/28/day/" data-id="cidixtq970004dcaniw6nemm0" class="article-share-link">Share</a>
+      <a data-url="zhufangxing.com/2014/07/28/day/" data-id="cidixxw3200074canmq34jl3z" class="article-share-link">Share</a>
       
       
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-leetcode-ICourse Schedule" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/05/01/leetcode-ICourse Schedule/" class="article-date">
+  <time datetime="2014-05-01T11:20:32.000Z" itemprop="datePublished">2014-05-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/05/01/leetcode-ICourse Schedule/">Leetcode -- Course Schedule  -- python解法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Course_Schedule">Course Schedule</h2><p>There are a total of n courses you have to take, labeled from 0 to n - 1.</p>
+<p>Some courses may have prerequisites, for example to take course 0 you have to first take course 1, which is expressed as a pair: [0,1]</p>
+<p>Given the total number of courses and a list of prerequisite pairs, is it possible for you to finish all courses?</p>
+<p>For example:</p>
+<p>2, [[1,0]]<br>There are a total of 2 courses to take. To take course 1 you should have finished course 0. So it is possible.</p>
+<p>2, [[1,0],[0,1]]<br>There are a total of 2 courses to take. To take course 1 you should have finished course 0, and to take course 0 you should also have finished course 1. So it is impossible.</p>
+<h2 id="解题思路">解题思路</h2><p>本题很明显是一个关于是否有回路的检测问题。因而想起本科的课程中提到过一个类似的问题，解题方法如下：</p>
+<ul>
+<li>1.检测出所有无依赖的课程；</li>
+<li>2.删除这些无依赖的课程，以及所有设计这些课程的依赖关系；</li>
+<li>3.如果所有依赖关系均被删除， So it is possible；如果这次循环没有删除一门课程，So it is impossible；如果是其他情况，继续执行1。</li>
+</ul>
+<h2 id="python_code">python code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="comment"># @param &#123;integer&#125; numCourses</span></span><br><span class="line">    <span class="comment"># @param &#123;integer[][]&#125; prerequisites</span></span><br><span class="line">    <span class="comment"># @return &#123;boolean&#125;</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">canFinish</span><span class="params">(self, numCourses, prerequisites)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> numCourses&lt;<span class="number">2</span> <span class="keyword">or</span> len(prerequisites)&lt;<span class="number">2</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">        <span class="comment">#prerequisites.sort()</span></span><br><span class="line">        <span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">            count=<span class="number">0</span></span><br><span class="line">            mark = [<span class="keyword">True</span>]*numCourses</span><br><span class="line">            <span class="keyword">for</span> pre <span class="keyword">in</span> prerequisites:</span><br><span class="line">                mark[pre[<span class="number">0</span>]] = <span class="keyword">False</span></span><br><span class="line">            <span class="keyword">for</span> pre <span class="keyword">in</span> prerequisites:</span><br><span class="line">                <span class="keyword">if</span> mark[pre[<span class="number">1</span>]]:</span><br><span class="line">                    count+=<span class="number">1</span></span><br><span class="line">                    prerequisites.remove(pre)</span><br><span class="line">            <span class="keyword">if</span> prerequisites==[]:</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">            <span class="keyword">elif</span> count==<span class="number">0</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">False</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="zhufangxing.com/2014/05/01/leetcode-ICourse Schedule/" data-id="cidixxw3200044canfdf02fib" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Leetcode/">Leetcode</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-leetcode-Isomorphic String" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/04/29/leetcode-Isomorphic String/" class="article-date">
+  <time datetime="2014-04-29T14:44:13.000Z" itemprop="datePublished">2014-04-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/04/29/leetcode-Isomorphic String/">Leetcode -- Isomorphic Strings -- python解法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Isomorphic_Strings">Isomorphic Strings</h2><p>Given two strings s and t, determine if they are isomorphic.</p>
+<p>Two strings are isomorphic if the characters in s can be replaced to get t.</p>
+<p>All occurrences of a character must be replaced with another character while preserving the order of characters. No two characters may map to the same character but a character may map to itself.</p>
+<p>For example,<br>Given “egg”, “add”, return true.</p>
+<p>Given “foo”, “bar”, return false.</p>
+<p>Given “paper”, “title”, return true.</p>
+<h2 id="解题思路">解题思路</h2><p>基本思路就是为每个string创建一个字典，保存该string已经遍历过的字符类别，value取0,1,2…。每遍历一个字符，便可比较是否同时在各自的字典里，并且value值是否相同，如果不统一便返回False.</p>
+<h2 id="python_code">python code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="comment"># @param &#123;string&#125; s</span></span><br><span class="line">    <span class="comment"># @param &#123;string&#125; t</span></span><br><span class="line">    <span class="comment"># @return &#123;boolean&#125;</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isIsomorphic</span><span class="params">(self, s, t)</span>:</span></span><br><span class="line">        dicS=&#123;&#125;</span><br><span class="line">        dicT=&#123;&#125;</span><br><span class="line">        <span class="keyword">if</span> len(s)!=len(t):</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(s)):</span><br><span class="line">            charS=s[i]</span><br><span class="line">            charT=t[i]</span><br><span class="line">            <span class="keyword">if</span> (dicS.has_key(charS) <span class="keyword">and</span> <span class="keyword">not</span> dicT.has_key(charT)) <span class="keyword">or</span> (<span class="keyword">not</span> dicS.has_key(charS) <span class="keyword">and</span> dicT.has_key(charT)):</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">            <span class="keyword">elif</span> dicS.has_key(charS) <span class="keyword">and</span> dicT.has_key(charT):</span><br><span class="line">                <span class="keyword">if</span> dicS[charS] != dicT[charT]:</span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                dicS[charS] = len(dicS)</span><br><span class="line">                dicT[charT] = len(dicT)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">True</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="zhufangxing.com/2014/04/29/leetcode-Isomorphic String/" data-id="cidixxw3200014cana4zczryg" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Leetcode/">Leetcode</a></li></ul>
+
     </footer>
   </div>
   
@@ -284,14 +288,28 @@
     
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Leetcode/">Leetcode</a><span class="tag-list-count">2</span></li></ul>
+    </div>
+  </div>
+
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Leetcode/" style="font-size: NaNpx;">Leetcode</a>
+    </div>
+  </div>
+
   
     
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">May 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">April 2014</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -303,14 +321,6 @@
       <ul>
         
           <li>
-            <a href="/2015/08/13/leetcode-Isomorphic String/">Leetcode -- Isomorphic Strings -- python解法</a>
-          </li>
-        
-          <li>
-            <a href="/2015/08/13/leetcode-ICourse Schedule/">Leetcode -- Course Schedule  -- python解法</a>
-          </li>
-        
-          <li>
             <a href="/2015/08/13/hello-world/">Hello World</a>
           </li>
         
@@ -320,6 +330,14 @@
         
           <li>
             <a href="/2014/07/28/day/">a good day</a>
+          </li>
+        
+          <li>
+            <a href="/2014/05/01/leetcode-ICourse Schedule/">Leetcode -- Course Schedule  -- python解法</a>
+          </li>
+        
+          <li>
+            <a href="/2014/04/29/leetcode-Isomorphic String/">Leetcode -- Isomorphic Strings -- python解法</a>
           </li>
         
       </ul>
