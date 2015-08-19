@@ -61,38 +61,6 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-C++有意思的问题" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/08/19/C++有意思的问题/" class="article-date">
-  <time datetime="2015-08-19T15:40:23.944Z" itemprop="datePublished">2015-08-19</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>����1 ��дһ�򽻻��������ĺ�<br>����1���������������������������Ǹ����������򷽷��Ͳ�����<br>[cpp] view plaincopyprint?</p>
-<h1 id="define__swap(a,b)_{_a=a^b;_b=a^b;a=a^b;_}">define _swap(a,b) { a=a^b; b=a^b;a=a^b; }</h1><p>����2���üӼ������򣬿��ܻ�����<br>[cpp] view plaincopyprint?</p>
-<h1 id="define__swap(a,b)_{_a=a+b;b=a-b;a=a-b;_}">define _swap(a,b) { a=a+b;b=a-b;a=a-b; }</h1><p>����������ʵ�Ѿ����Ǻ����ˡ�<br>����3�����ڴ渴�ƺ�������<br>[cpp] view plaincopyprint?</p>
-<h1 id="define__swap(a,b)_\">define _swap(a,b) \</h1><p>{\<br>    char tempBuf[8]; \<br>    memcpy(tempBuf,&amp;a,sizeof(a)); \<br>    memcpy(&amp;a,&amp;b,sizeof(b)); \<br>    memcpy(&amp;b,tempBuf,sizeof(b)); \<br>}<br>��ȻҲ�����ö�̬�ڴ�����<br>[cpp] view plaincopyprint?</p>
-<h1 id="define__swap(a,_b)\">define _swap(a, b)\</h1><p>{\<br>    int size = sizeof(a);\<br>    char<em> temp = (char</em>)malloc(size);\<br>    memcpy(temp, &amp;a, size);\<br>    memcpy(&amp;a, &amp;b, size);\<br>    memcpy(&amp;b, temp, size);\<br>    free(temp);\<br>}<br>����2��������ʵ��һ�����ĳ�Ա����Ϊ�ص�����<br>�ص����������õ���Ҫ�����Ǻ���ָ�롣��������ָ����Ϊ�����Ĳ���֮һ��Ȼ�������������ڲ�ͨ������ָ�룬���ú���ָ����ָ�ĺ�����<br>��C++�У����ĳ�Ա����������thisָ�룬ֱ�Ӵ�����������ƥ�䡣������Ҫ�����ĳ�Ա������Ϊ�ص������������Խ��ú�������Ϊ��̬�ġ������������壺<br>[cpp] view plaincopyprint?<br>class Test<br>{<br>public:<br>    static void callBackFun(void){};  //��ΪcallBackFunĬ����һ��const Test* ��ָ��<br>};  </p>
-<p>typedef void (<em>FPtr)(void);<br>void Fun(FPtr ptr)<br>{<br>    ptr();<br>}<br>void main(void)<br>{<br>    Fun(Test::callBackFun);<br>}<br>����3������дBOOL , float, ָ�������롰��ֵ���Ƚϵ� if ����<br>��BOOL�Ƚϣ���׼ if( flag) �� if( ! flag)<br>��float�Ƚϣ���׼  const float EPSINON = 0.000001;<br>                                  if ((x &gt;= - EPSINON) &amp;&amp; (x &lt;= EPSINON)<br>��ָ���Ƚϣ���׼ if(p == NULL) �� if (p != NULL)<br>����4�������������������ֱ�����ʲô<br>[cpp] view plaincopyprint?<br>float a = 1.0f;<br>cout &lt;&lt; (int)a &lt;&lt; endl;<br>cout &lt;&lt; (int&amp;)a &lt;&lt; endl;<br>cout &lt;&lt; boolalpha &lt;&lt; ( (int)a == (int&amp;)a ) &lt;&lt; endl; // ����ʲô��<br>float b = 0.0f;<br>cout &lt;&lt; (int)b &lt;&lt; endl;<br>cout &lt;&lt; (int&amp;)b &lt;&lt; endl;<br>cout &lt;&lt; boolalpha &lt;&lt; ( (int)b == (int&amp;)b ) &lt;&lt; endl; // ����ʲô��<br>�����ֱ�Ϊ false �� true ��(int)a�ǽ�������ת�����൱�����¹�����һ��ֵ����a����������(int &amp;)a�����Ǳ�����һ��������Ϣ����ԭ�ڴ��е��������������͡���Ϊ1.0f���ڴ��ı�ʾΪ0x3f800000��������ת��Ϊ����Ϊ1065353216�����Ե�һ������Ϊfalse����0.0f���ڴ��ı�ʾ����0x00000000�����Եڶ�������Ϊtrue������(int)&amp;a��ʾ��a�ĵ�ַת��Ϊ������<br>����5�����þֲ�������ȫ�ֱ���ʵ��strlen<br>����1�����õݹ�ʵ��<br>[cpp] view plaincopyprint?<br>int _strlen(char </em>str)<br>{<br>    return (str==NULL||<em>str==’\0’)?0 : _strlen(++str)+1;<br>}<br>����2���ǵݹ飬��������������������Ч��Ӧ�û��ȷ���1�ߡ�<br>[cpp] view plaincopyprint?<br>char </em> _end(char <em>str)<br>{<br>    while(</em>str!=’\0’)<br>         str++;<br>    return str;<br>}<br>int _strlen(char <em>str)<br>{<br>    return (str==NULL||</em>str==’\0’)?0 : _end(str) - str;<br>}  </p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="zhufangxing.com/2015/08/19/C++有意思的问题/" data-id="cidiy4o3o0000noan72ws45g2" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
     <article id="post-c++函数" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/08/13/c++函数/" class="article-date">
@@ -123,7 +91,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="zhufangxing.com/2015/08/13/c++函数/" data-id="cidiy4o5f0008noan6bq8xlrb" class="article-share-link">Share</a>
+      <a data-url="zhufangxing.com/2015/08/13/c++函数/" data-id="cidiy6rae0000nganhdhs72or" class="article-share-link">Share</a>
       
       
     </footer>
@@ -172,7 +140,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="zhufangxing.com/2014/05/01/leetcode-ICourse Schedule/" data-id="cidiy4o5f0004noanxxt11va0" class="article-share-link">Share</a>
+      <a data-url="zhufangxing.com/2014/05/01/leetcode-ICourse Schedule/" data-id="cidiy6rbx0004ngantz6jpnps" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Leetcode/">Leetcode</a></li></ul>
@@ -219,7 +187,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="zhufangxing.com/2014/05/01/hello-world/" data-id="cidiy4o5f0006noanh5abac52" class="article-share-link">Share</a>
+      <a data-url="zhufangxing.com/2014/05/01/hello-world/" data-id="cidiy6rbz0006nganlv8kl89y" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Leetcode/">Leetcode</a></li></ul>
@@ -265,7 +233,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="zhufangxing.com/2014/04/29/leetcode-Isomorphic String/" data-id="cidiy4o4z0001noan4k7p3u5q" class="article-share-link">Share</a>
+      <a data-url="zhufangxing.com/2014/04/29/leetcode-Isomorphic String/" data-id="cidiy6rbq0001ngan3un4lykw" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Leetcode/">Leetcode</a></li></ul>
@@ -306,7 +274,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">May 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">April 2014</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">May 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">April 2014</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -316,10 +284,6 @@
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
-        
-          <li>
-            <a href="/2015/08/19/C++有意思的问题/">(no title)</a>
-          </li>
         
           <li>
             <a href="/2015/08/13/c++函数/">c++ 函数</a>
