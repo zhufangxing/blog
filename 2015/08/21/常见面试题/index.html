@@ -3,17 +3,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>zhufangxing blog</title>
+  <title>c++ 常见面试题 | zhufangxing blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="zhufangxing blog">
-<meta property="og:url" content="zhufangxing.com/index.html">
+  <meta name="description" content="1.在C++ 程序中调用被C 编译器编译后的函数，为什么要加extern “C”？答：首先，extern是C/C++语言中表明函数和全局变量作用范围的关键字，该关键字告诉编译器，其声明的函数和变量可以在本模块或其它模块中使用。通常，在模块的头文件中对本模块提供给其它模块引用的函数和全局变量以关键字extern声明。extern “C”是连接申明(linkage declaration),被exte">
+<meta property="og:type" content="article">
+<meta property="og:title" content="c++ 常见面试题">
+<meta property="og:url" content="zhufangxing.com/2015/08/21/常见面试题/index.html">
 <meta property="og:site_name" content="zhufangxing blog">
-<meta property="og:description">
+<meta property="og:description" content="1.在C++ 程序中调用被C 编译器编译后的函数，为什么要加extern “C”？答：首先，extern是C/C++语言中表明函数和全局变量作用范围的关键字，该关键字告诉编译器，其声明的函数和变量可以在本模块或其它模块中使用。通常，在模块的头文件中对本模块提供给其它模块引用的函数和全局变量以关键字extern声明。extern “C”是连接申明(linkage declaration),被exte">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="zhufangxing blog">
-<meta name="twitter:description">
+<meta name="twitter:title" content="c++ 常见面试题">
+<meta name="twitter:description" content="1.在C++ 程序中调用被C 编译器编译后的函数，为什么要加extern “C”？答：首先，extern是C/C++语言中表明函数和全局变量作用范围的关键字，该关键字告诉编译器，其声明的函数和变量可以在本模块或其它模块中使用。通常，在模块的头文件中对本模块提供给其它模块引用的函数和全局变量以关键字extern声明。extern “C”是连接申明(linkage declaration),被exte">
   
     <link rel="alternative" href="/atom.xml" title="zhufangxing blog" type="application/atom+xml">
   
@@ -59,9 +59,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-常见面试题" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-常见面试题" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/08/21/常见面试题/" class="article-date">
   <time datetime="2015-08-21T12:17:32.210Z" itemprop="datePublished">2015-08-21</time>
@@ -74,8 +72,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/08/21/常见面试题/">c++ 常见面试题</a>
+    <h1 class="article-title" itemprop="name">
+      c++ 常见面试题
     </h1>
   
 
@@ -112,193 +110,20 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-c++函数" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/08/13/c++函数/" class="article-date">
-  <time datetime="2015-08-13T06:20:27.970Z" itemprop="datePublished">2015-08-13</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/08/13/c++函数/">c++ 函数</a>
-    </h1>
+    <a href="/2015/08/13/c++函数/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">c++ 函数</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>相对于c，c++有一些新特性，主要包括内联函数、按引用传递变量、默认参数、函数重载（多态）、函数模版。</p>
-<h2 id="内联函数_inline">内联函数 inline</h2><h3 id="特性">特性</h3><p>-空间换时间的方法；<br>-执行时间短；<br>-“函数调用”变为“代码替换”，如果在10个不同地方调用同一个内联函数，那么该程序将有10份该代码的副本；<br>-如果不是频繁调用，节省的时间也是很少的；</p>
-<h3 id="要求">要求</h3><p>-不能递归，即内联函数不能调用自己；<br>-需要编译器支持；</p>
-<h3 id="内联函数(inline)_与_宏_（#define）">内联函数(inline) 与 宏 （#define）</h3><p>-宏实质上是内联函数的原始实现；<br>-但是，有时宏不能实现特定功能，或者实现的方式会出错；而内联函数可以解决这些问题；<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hexcolor">#def</span>ine <span class="function"><span class="title">SQUARE</span><span class="params">(X)</span></span> (</span><br></pre></td></tr></table></figure></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="zhufangxing.com/2015/08/13/c++函数/" data-id="cidllredf0000roansf79sg4d" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
   
 </article>
 
-
-  
-    <article id="post-leetcode-ICourse Schedule" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/05/01/leetcode-ICourse Schedule/" class="article-date">
-  <time datetime="2014-05-01T11:20:32.000Z" itemprop="datePublished">2014-05-01</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/05/01/leetcode-ICourse Schedule/">Leetcode -- Course Schedule  -- python解法</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Course_Schedule">Course Schedule</h2><p>There are a total of n courses you have to take, labeled from 0 to n - 1.</p>
-<p>Some courses may have prerequisites, for example to take course 0 you have to first take course 1, which is expressed as a pair: [0,1]</p>
-<p>Given the total number of courses and a list of prerequisite pairs, is it possible for you to finish all courses?</p>
-<p>For example:</p>
-<p>2, [[1,0]]<br>There are a total of 2 courses to take. To take course 1 you should have finished course 0. So it is possible.</p>
-<p>2, [[1,0],[0,1]]<br>There are a total of 2 courses to take. To take course 1 you should have finished course 0, and to take course 0 you should also have finished course 1. So it is impossible.</p>
-<h2 id="解题思路">解题思路</h2><p>本题很明显是一个关于是否有回路的检测问题。因而想起本科的课程中提到过一个类似的问题，解题方法如下：</p>
-<ul>
-<li>1.检测出所有无依赖的课程；</li>
-<li>2.删除这些无依赖的课程，以及所有设计这些课程的依赖关系；</li>
-<li>3.如果所有依赖关系均被删除， So it is possible；如果这次循环没有删除一门课程，So it is impossible；如果是其他情况，继续执行1。</li>
-</ul>
-<h2 id="python_code">python code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="comment"># @param &#123;integer&#125; numCourses</span></span><br><span class="line">    <span class="comment"># @param &#123;integer[][]&#125; prerequisites</span></span><br><span class="line">    <span class="comment"># @return &#123;boolean&#125;</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">canFinish</span><span class="params">(self, numCourses, prerequisites)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> numCourses&lt;<span class="number">2</span> <span class="keyword">or</span> len(prerequisites)&lt;<span class="number">2</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">        <span class="comment">#prerequisites.sort()</span></span><br><span class="line">        <span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">            count=<span class="number">0</span></span><br><span class="line">            mark = [<span class="keyword">True</span>]*numCourses</span><br><span class="line">            <span class="keyword">for</span> pre <span class="keyword">in</span> prerequisites:</span><br><span class="line">                mark[pre[<span class="number">0</span>]] = <span class="keyword">False</span></span><br><span class="line">            <span class="keyword">for</span> pre <span class="keyword">in</span> prerequisites:</span><br><span class="line">                <span class="keyword">if</span> mark[pre[<span class="number">1</span>]]:</span><br><span class="line">                    count+=<span class="number">1</span></span><br><span class="line">                    prerequisites.remove(pre)</span><br><span class="line">            <span class="keyword">if</span> prerequisites==[]:</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">            <span class="keyword">elif</span> count==<span class="number">0</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">False</span></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="zhufangxing.com/2014/05/01/leetcode-ICourse Schedule/" data-id="cidllref50007roanz5ces5t7" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Leetcode/">Leetcode</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/05/01/hello-world/" class="article-date">
-  <time datetime="2014-05-01T11:20:32.000Z" itemprop="datePublished">2014-05-01</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/05/01/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="zhufangxing.com/2014/05/01/hello-world/" data-id="cidllref50009roanvm5adf3p" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-leetcode-Isomorphic String" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/04/29/leetcode-Isomorphic String/" class="article-date">
-  <time datetime="2014-04-29T14:44:13.000Z" itemprop="datePublished">2014-04-29</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/04/29/leetcode-Isomorphic String/">Leetcode -- Isomorphic Strings -- python解法</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Isomorphic_Strings">Isomorphic Strings</h2><p>Given two strings s and t, determine if they are isomorphic.</p>
-<p>Two strings are isomorphic if the characters in s can be replaced to get t.</p>
-<p>All occurrences of a character must be replaced with another character while preserving the order of characters. No two characters may map to the same character but a character may map to itself.</p>
-<p>For example,<br>Given “egg”, “add”, return true.</p>
-<p>Given “foo”, “bar”, return false.</p>
-<p>Given “paper”, “title”, return true.</p>
-<h2 id="解题思路">解题思路</h2><p>基本思路就是为每个string创建一个字典，保存该string已经遍历过的字符类别，value取0,1,2…。每遍历一个字符，便可比较是否同时在各自的字典里，并且value值是否相同，如果不统一便返回False.</p>
-<h2 id="python_code">python code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="comment"># @param &#123;string&#125; s</span></span><br><span class="line">    <span class="comment"># @param &#123;string&#125; t</span></span><br><span class="line">    <span class="comment"># @return &#123;boolean&#125;</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isIsomorphic</span><span class="params">(self, s, t)</span>:</span></span><br><span class="line">        dicS=&#123;&#125;</span><br><span class="line">        dicT=&#123;&#125;</span><br><span class="line">        <span class="keyword">if</span> len(s)!=len(t):</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(s)):</span><br><span class="line">            charS=s[i]</span><br><span class="line">            charT=t[i]</span><br><span class="line">            <span class="keyword">if</span> (dicS.has_key(charS) <span class="keyword">and</span> <span class="keyword">not</span> dicT.has_key(charT)) <span class="keyword">or</span> (<span class="keyword">not</span> dicS.has_key(charS) <span class="keyword">and</span> dicT.has_key(charT)):</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">            <span class="keyword">elif</span> dicS.has_key(charS) <span class="keyword">and</span> dicT.has_key(charT):</span><br><span class="line">                <span class="keyword">if</span> dicS[charS] != dicT[charT]:</span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                dicS[charS] = len(dicS)</span><br><span class="line">                dicT[charT] = len(dicT)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">True</span></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="zhufangxing.com/2014/04/29/leetcode-Isomorphic String/" data-id="cidllreeq0004roande4jsb8v" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Leetcode/">Leetcode</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-  
 </section>
         
           <aside id="sidebar">
