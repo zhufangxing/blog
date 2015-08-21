@@ -3,26 +3,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>c++ 函数 | zhufangxing blog</title>
+  <title>Archives: 2015/5 | zhufangxing blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="相对于c，c++有一些新特性，主要包括内联函数、按引用传递变量、默认参数、函数重载（多态）、函数模版。
-内联函数 inline特性-空间换时间的方法；-执行时间短；-“函数调用”变为“代码替换”，如果在10个不同地方调用同一个内联函数，那么该程序将有10份该代码的副本；-如果不是频繁调用，节省的时间也是很少的；
-要求-不能递归，即内联函数不能调用自己；-需要编译器支持；
-内联函数(inline)">
-<meta property="og:type" content="article">
-<meta property="og:title" content="c++ 函数">
-<meta property="og:url" content="zhufangxing.com/2015/08/21/c++函数/index.html">
+  <meta name="description">
+<meta property="og:type" content="website">
+<meta property="og:title" content="zhufangxing blog">
+<meta property="og:url" content="zhufangxing.com/archives/2015/05/index.html">
 <meta property="og:site_name" content="zhufangxing blog">
-<meta property="og:description" content="相对于c，c++有一些新特性，主要包括内联函数、按引用传递变量、默认参数、函数重载（多态）、函数模版。
-内联函数 inline特性-空间换时间的方法；-执行时间短；-“函数调用”变为“代码替换”，如果在10个不同地方调用同一个内联函数，那么该程序将有10份该代码的副本；-如果不是频繁调用，节省的时间也是很少的；
-要求-不能递归，即内联函数不能调用自己；-需要编译器支持；
-内联函数(inline)">
+<meta property="og:description">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="c++ 函数">
-<meta name="twitter:description" content="相对于c，c++有一些新特性，主要包括内联函数、按引用传递变量、默认参数、函数重载（多态）、函数模版。
-内联函数 inline特性-空间换时间的方法；-执行时间短；-“函数调用”变为“代码替换”，如果在10个不同地方调用同一个内联函数，那么该程序将有10份该代码的副本；-如果不是频繁调用，节省的时间也是很少的；
-要求-不能递归，即内联函数不能调用自己；-需要编译器支持；
-内联函数(inline)">
+<meta name="twitter:title" content="zhufangxing blog">
+<meta name="twitter:description">
   
     <link rel="alternative" href="/atom.xml" title="zhufangxing blog" type="application/atom+xml">
   
@@ -68,67 +59,39 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-c++函数" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/08/21/c++函数/" class="article-date">
-  <time datetime="2015-08-21T12:31:58.658Z" itemprop="datePublished">2015-08-21</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
+        <section id="main">
   
-    <h1 class="article-title" itemprop="name">
-      c++ 函数
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2015" class="archive-year">2015</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2015/05/01/leetcode-ICourse Schedule/" class="archive-article-date">
+  <time datetime="2015-05-01T11:20:32.000Z" itemprop="datePublished">May 1</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2015/05/01/leetcode-ICourse Schedule/">Leetcode -- Course Schedule  -- python解法</a>
     </h1>
   
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>相对于c，c++有一些新特性，主要包括内联函数、按引用传递变量、默认参数、函数重载（多态）、函数模版。</p>
-<h2 id="内联函数_inline">内联函数 inline</h2><h3 id="特性">特性</h3><p>-空间换时间的方法；<br>-执行时间短；<br>-“函数调用”变为“代码替换”，如果在10个不同地方调用同一个内联函数，那么该程序将有10份该代码的副本；<br>-如果不是频繁调用，节省的时间也是很少的；</p>
-<h3 id="要求">要求</h3><p>-不能递归，即内联函数不能调用自己；<br>-需要编译器支持；</p>
-<h3 id="内联函数(inline)_与_宏_（#define）">内联函数(inline) 与 宏 （#define）</h3><p>-宏实质上是内联函数的原始实现；<br>-但是，有时宏不能实现特定功能，或者实现的方式会出错；而内联函数可以解决这些问题；<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hexcolor">#def</span>ine <span class="function"><span class="title">SQUARE</span><span class="params">(X)</span></span> (</span><br></pre></td></tr></table></figure></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="zhufangxing.com/2015/08/21/c++函数/" data-id="cidlmijhy0000xcancmzj51il" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li></ul>
-
-    </footer>
+    </header>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2015/08/21/常见面试题/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          c++ 常见面试题
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2015/05/01/leetcode-ICourse Schedule/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Leetcode -- Course Schedule  -- python解法</div>
-    </a>
-  
-</nav>
-
-  
 </article>
-
+  
+  
+    </div></section>
+  
 </section>
         
           <aside id="sidebar">
