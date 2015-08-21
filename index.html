@@ -64,7 +64,7 @@
     <article id="post-常见面试题" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/08/21/常见面试题/" class="article-date">
-  <time datetime="2015-08-21T12:28:43.337Z" itemprop="datePublished">2015-08-21</time>
+  <time datetime="2015-08-21T12:33:18.302Z" itemprop="datePublished">2015-08-21</time>
 </a>
     
   </div>
@@ -83,13 +83,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ol>
-<li>在C++ 程序中调用被C 编译器编译后的函数，为什么要加extern “C”？<br>答：首先，extern是C/C++语言中表明函数和全局变量作用范围的关键字，该关键字告诉编译器，其声明的函数和变量可以在本模块或其它模块中使用。<br>通常，在模块的头文件中对本模块提供给其它模块引用的函数和全局变量以关键字extern声明。extern “C”是连接申明(linkage declaration),被extern “C”修饰的变量和函数是按照C语言方式编译和连接的。作为一种面向对象的语言，C++支持函数重载，而过程式语言C则不支持。函数被C++编译后在符号库中的名字与C语言的不同。例如，假设某个函数的原型为：void foo( int x, int y );该函数被C编译器编译后在符号库中的名字为_foo，而C++编译器则会产生像_foo_int_int之类的名字。这样的名字包含了函数名、函数参数数量及类型信息，C++就是靠这种机制来实现函数重载的。<br>所以，可以用一句话概括extern “C”这个声明的真实目的:解决名字匹配问题，实现C++与C的混合编程。</li>
-<li>头文件中的ifndef/define/endif有什么作用？<br>答：这是C++预编译头文件保护符，保证即使文件被多次包含，头文件也只定义一次。</li>
-<li>＃include 与 ＃include “file.h”的区别？<br>答：前者是从标准库路径寻找和引用file.h，而后者是从当前工作路径搜寻并引用file.h。</li>
-<li>评价一下C/C++各自的特点<br>答：C语言是一种结构化语言，面向过程，基于算法和数据结构，所考虑的是如何通过一个过程或者函数从输入得到输出；<br>C++是面向对象，基于类、对象和继承，所考虑的是如何构造一个对象模型，让这个模型能够契合与之对应的问题，通过获取对象的状态信息得到输出或实现过程控制。</li>
-<li>const 有什么用途？<br>答：在C/C++中，（1）可以定义const常量，（2）修饰函数的返回值和形参；<br>在C++中，还可以修饰函数的定义体，定义类的const成员函数。被const修饰的东西受到强制保护，可以预防意外的变动，提高了程序的健壮性。</li>
-<li>const和#define有什么区别？<br>答：（1）const和#define都可以定义常量，但是const用途更广。<br>（2）const 常量有数据类型，而宏常量没有数据类型。编译器可以对前者进行类型安全检查。而对后者只进行字符替换，没有类型安全检查，并且在字符替换可能会产生意料不到的错误。<br>（3） 有些集成化的调试工具可以对const 常量进行调试，但是不能对宏常量进行调试。</li>
+        <h2 id="1-_在C++_程序中调用被C_编译器编译后的函数，为什么要加extern_“C”？">1. 在C++ 程序中调用被C 编译器编译后的函数，为什么要加extern “C”？</h2><p>答：首先，extern是C/C++语言中表明函数和全局变量作用范围的关键字，该关键字告诉编译器，其声明的函数和变量可以在本模块或其它模块中使用。<br>通常，在模块的头文件中对本模块提供给其它模块引用的函数和全局变量以关键字extern声明。extern “C”是连接申明(linkage declaration),被extern “C”修饰的变量和函数是按照C语言方式编译和连接的。作为一种面向对象的语言，C++支持函数重载，而过程式语言C则不支持。函数被C++编译后在符号库中的名字与C语言的不同。例如，假设某个函数的原型为：void foo( int x, int y );该函数被C编译器编译后在符号库中的名字为_foo，而C++编译器则会产生像_foo_int_int之类的名字。这样的名字包含了函数名、函数参数数量及类型信息，C++就是靠这种机制来实现函数重载的。<br>所以，可以用一句话概括extern “C”这个声明的真实目的:解决名字匹配问题，实现C++与C的混合编程。</p>
+<h2 id="2-_头文件中的ifndef/define/endif有什么作用？">2. 头文件中的ifndef/define/endif有什么作用？</h2><p>答：这是C++预编译头文件保护符，保证即使文件被多次包含，头文件也只定义一次。</p>
+<h2 id="3-_＃include_与_＃include_“file-h”的区别？">3. ＃include 与 ＃include “file.h”的区别？</h2><p>答：前者是从标准库路径寻找和引用file.h，而后者是从当前工作路径搜寻并引用file.h。</p>
+<h2 id="4-_评价一下C/C++各自的特点">4. 评价一下C/C++各自的特点</h2><p>答：C语言是一种结构化语言，面向过程，基于算法和数据结构，所考虑的是如何通过一个过程或者函数从输入得到输出；<br>C++是面向对象，基于类、对象和继承，所考虑的是如何构造一个对象模型，让这个模型能够契合与之对应的问题，通过获取对象的状态信息得到输出或实现过程控制。</p>
+<h2 id="5-_const_有什么用途？">5. const 有什么用途？</h2><p>答：在C/C++中，（1）可以定义const常量，（2）修饰函数的返回值和形参；<br>在C++中，还可以修饰函数的定义体，定义类的const成员函数。被const修饰的东西受到强制保护，可以预防意外的变动，提高了程序的健壮性。</p>
+<h2 id="6-_const和#define有什么区别？">6. const和#define有什么区别？</h2><p>答：（1）const和#define都可以定义常量，但是const用途更广。<br>（2）const 常量有数据类型，而宏常量没有数据类型。编译器可以对前者进行类型安全检查。而对后者只进行字符替换，没有类型安全检查，并且在字符替换可能会产生意料不到的错误。<br>（3） 有些集成化的调试工具可以对const 常量进行调试，但是不能对宏常量进行调试。</p>
+<ol>
 <li>关于sizeof小结的。<br>答：sizeof计算的是在栈中分配的内存大小。<br>（1） sizeof不计算static变量占得内存；<br>（2） 指针的大小一定是4个字节，而不管是什么类型的指针；<br>（3） char型占1个字节，int占4个字节，short int占2个字节<br>long int占4个字节，float占4字节，double占48字节，string占4字节<br>一个空类占1个字节，单一继承的空类占1个字节，虚继承涉及到虚指针所以占4个字节<br>（4） 数组的长度：<br>若指定了数组长度，则不看元素个数，总字节数=数组长度*sizeof（元素类型）<br>若没有指定长度，则按实际元素个数类确定<br>Ps：若是字符数组，则应考虑末尾的空字符。<br>（5） 结构体对象的长度<br>在默认情况下，为方便对结构体内元素的访问和管理，当结构体内元素长度小于处理器位数的时候，便以结构体内最长的数据元素的长度为对齐单位，即为其整数倍。若结构体内元素长度大于处理器位数则以处理器位数为单位对齐。<br>（6） unsigned影响的只是最高位的意义，数据长度不会改变，所以sizeof（unsigned int）=4<br>（7） 自定义类型的sizeof取值等于它的类型原型取sizeof<br>（8） 对函数使用sizeof，在编译阶段会被函数的返回值的类型代替<br>（9） sizeof后如果是类型名则必须加括号，如果是变量名可以不加括号，这是因为sizeof是运算符<br>（10） 当使用结构类型或者变量时，sizeof返回实际的大小。当使用静态数组时返回数组的全部大小，sizeof不能返回动态数组或者外部数组的尺寸</li>
 <li>sizeof与strlen的区别？<br>答： （1）sizeof的返回值类型为size_t（unsigned int）；<br>（2）sizeof是运算符，而strlen是函数；<br>（3）sizeof可以用类型做参数，其参数可以是任意类型的或者是变量、函数，而strlen只能用char*做参数，且必须是以’\0’结尾，且不计算\0；<br>（4）数组作sizeof的参数时不会退化为指针，而传递给strlen是就退化为指针；<br>（5）sizeof是编译时的常量，而strlen要到运行时才会计算出来，且是字符串中字符的个数而不是内存大小；一般sizeof( s ) = strlen( s ) + 1;<br>（6）对指针，sizeof是4；如果指针数组，则看里边含有几个指针；</li>
 <li>指针和引用的区别？<br>答：指针和引用都提供了间接操作对象的功能。<br>（1） 指针定义时可以不初始化，而引用在定义时就要初始化，和一个对象绑定，而且一经绑定，只要引用存在，就会一直保持和该对象的绑定；<br>（2） 赋值行为的差异：指针赋值是将指针重新指向另外一个对象，而引用赋值则是修改对象本身；<br>（3） 指针之间存在类型转换，而引用分const引用和非const应用，非const引用只能和同类型的对象绑定，const引用可以绑定到不同但相关类型的对象或者右值</li>
@@ -111,7 +111,11 @@
 <li>有哪几种情况只能用构造函数初始化列表而不能用赋值初始化？<br>答：const成员，引用成员</li>
 <li>什么是虚指针？<br>答：虚指针或虚函数指针是虚函数的实现细节。带有虚函数的每一个对象都有一个虚指针指向该类的虚函数表。</li>
 <li>C++如何阻止一个类被实例化？一般在什么时候将构造函数声明为private？<br>答：（1）将类定义为抽象基类或者将构造函数声明为private；<br>（2）不允许类外部创建类对象，只能在类内部创建对象</li>
-<li>main函数执行之前会执行什么？执行之后还能执行代码吗？<br>答：（1）全局对象的构造函数会在main函数之前执行；<br>（2）可以，可以用_onexit 注册一个函数，它会在main 之后执行;<br>如果你需要加入一段在main退出后执行的代码，可以使用atexit()函数，注册一个函数。<br>语法：<h1 id="include">include</h1><h1 id="include-1">include</h1>int atexit(void (*function”)(void));<br>void fn1( void ), fn2( void ), fn3( void );<br>int main( void )<br>{<br>atexit(fn1);<br>atexit( fn2 );<br>printf( “This is executed first.\n” );<br>}<br>void fn1()<br>{<br>printf( “ This is\n” );<br>}<br>void fn2()<br>{<br>printf( “ executed next.” );<br>}<br>结果：<br>This is executed first.<br>This is executed next.</li>
+<li>main函数执行之前会执行什么？执行之后还能执行代码吗？<br>答：（1）全局对象的构造函数会在main函数之前执行；<br>（2）可以，可以用_onexit 注册一个函数，它会在main 之后执行;<br>如果你需要加入一段在main退出后执行的代码，可以使用atexit()函数，注册一个函数。<br>语法：<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#include&#10;int atexit(void (*function&#34;)(void));&#10;void fn1( void ), fn2( void ), fn3( void );&#10;int main( void )&#10;&#123;&#10;atexit(fn1);&#10;atexit( fn2 );&#10;printf( &#34;This is executed first.\n&#34; );&#10;&#125;&#10;void fn1()&#10;&#123;&#10;printf( &#34; This is\n&#34; );&#10;&#125;&#10;void fn2()&#10;&#123;&#10;printf( &#34; executed next.&#34; );&#10;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>结果：<br>This is executed first.<br>This is executed next.</p>
+<ol>
 <li>请描述进程和线程的区别？<br>答：（1）进程是程序的一次执行，线程是进程中的执行单元；<br>（2）进程间是独立的，这表现在内存空间、上下文环境上，线程运行在进程中；<br>（3）一般来讲，进程无法突破进程边界存取其他进程内的存储空间；而同一进程所产生的线程共享内存空间；<br>（4）同一进程中的两段代码不能同时执行，除非引入多线程。</li>
 <li>进程间如何通信？<br>答：信号、信号量、消息队列、共享内存</li>
 <li>在网络编程中涉及并发服务器，使用多进程与多线程的区别？<br>答：（1）线程执行开销小，但不利于资源管理和保护；进程则相反，进程可跨越机器迁移。<br>（2）多进程时每个进程都有自己的内存空间，而多线程间共享内存空间；<br>（3）线程产生的速度快，线程间通信快、切换快；<br>（4）线程的资源利用率比较好；<br>（5）线程使用公共变量或者资源时需要同步机制。</li>
@@ -144,13 +148,13 @@
 <li>static全局变量与普通的全局变量有什么区别？static局部变量和普通局部变量有什么区别？static函数与普通函数有什么区别？<br>答：static全局变量与普通全局变量区别：static全局变量只初使化一次，防止在其他文件单元中被引用;<br>static局部变量和普通局部变量区别：static局部变量只被初始化一次，下一次依据上一次结果值；<br>static函数与普通函数区别：static函数在内存中只有一份，普通函数在每个被调用中维持一份拷贝。</li>
 <li>程序的局部变量存在于（堆栈）中，全局变量存在于（静态区 ）中，动态申请数据存在于（ 堆）中。</li>
 <li>对于一个频繁使用的短小函数,在C语言中应用什么实现,在C++中应用什么实现?<br>c用宏定义，c++用inline</li>
-<li>有1,2,….一直到n的无序数组,求排序算法,并且要求时间复杂度为O(n),空间复杂度O(1),使用交换,而且一次只能交换两个数。<br>‘’’javascrpt<h1 id="include-2">include</h1>Using namespace std；<br>int main(){<br>int a[] = {10,6,9,5,2,8,4,7,1,3};<br>int len = sizeof(a) / sizeof(int);<br>int temp;<br>for(int i = 0; i &lt; len p&gt;<br>{<br>temp = a[a[i] - 1];<br>a[a[i] - 1] = a[i];<br>a[i] = temp;<br>if ( a[i] == i + 1)<br>i++;<br>}<br>for (int j = 0; j &lt; len jp&gt;<br>cout&lt;&lt;&lt; p&gt;<br>return 0;<br>}<br>‘’’</li>
+<li>有1,2,….一直到n的无序数组,求排序算法,并且要求时间复杂度为O(n),空间复杂度O(1),使用交换,而且一次只能交换两个数。<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#include&#10;Using namespace std&#65307;&#10;int main()&#123;&#10;int a[] = &#123;10,6,9,5,2,8,4,7,1,3&#125;;&#10;int len = sizeof(a) / sizeof(int);&#10;int temp;&#10;for(int i = 0; i &#60; len p&#62;&#10;&#123;&#10;temp = a[a[i] - 1];&#10;a[a[i] - 1] = a[i];&#10;a[i] = temp;&#10;if ( a[i] == i + 1)&#10;i++;&#10;&#125;&#10;for (int j = 0; j &#60; len jp&#62;&#10;cout&#60;&#60;&#60; p&#62;&#10;return 0;&#10;&#125;</span><br></pre></td></tr></table></figure></li>
 </ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="zhufangxing.com/2015/08/21/常见面试题/" data-id="cidlm5pbt000104anuwyw7qhc" class="article-share-link">Share</a>
+      <a data-url="zhufangxing.com/2015/08/21/常见面试题/" data-id="cidlmbl4m0003v0ans1ln1mur" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li></ul>
@@ -164,8 +168,8 @@
   
     <article id="post-c++函数" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/08/13/c++函数/" class="article-date">
-  <time datetime="2015-08-13T06:20:27.970Z" itemprop="datePublished">2015-08-13</time>
+    <a href="/2015/08/21/c++函数/" class="article-date">
+  <time datetime="2015-08-21T12:31:58.658Z" itemprop="datePublished">2015-08-21</time>
 </a>
     
   </div>
@@ -176,7 +180,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/08/13/c++函数/">c++ 函数</a>
+      <a class="article-title" href="/2015/08/21/c++函数/">c++ 函数</a>
     </h1>
   
 
@@ -192,9 +196,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="zhufangxing.com/2015/08/13/c++函数/" data-id="cidlm5pal000004anzwqt13ce" class="article-share-link">Share</a>
+      <a data-url="zhufangxing.com/2015/08/21/c++函数/" data-id="cidlmbl3b0000v0anhiomf9gq" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li></ul>
+
     </footer>
   </div>
   
@@ -241,7 +247,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="zhufangxing.com/2014/05/01/leetcode-ICourse Schedule/" data-id="cidlm5pca000704ano5k9dm67" class="article-share-link">Share</a>
+      <a data-url="zhufangxing.com/2014/05/01/leetcode-ICourse Schedule/" data-id="cidlmbl4m0008v0an99o7muho" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Leetcode/">Leetcode</a></li></ul>
@@ -288,7 +294,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="zhufangxing.com/2014/05/01/hello-world/" data-id="cidlm5pcd000904anqouchpjr" class="article-share-link">Share</a>
+      <a data-url="zhufangxing.com/2014/05/01/hello-world/" data-id="cidlmbl4m000av0ane6d2ta7f" class="article-share-link">Share</a>
       
       
     </footer>
@@ -332,7 +338,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="zhufangxing.com/2014/04/29/leetcode-Isomorphic String/" data-id="cidlm5pc7000404anq6ffo2tu" class="article-share-link">Share</a>
+      <a data-url="zhufangxing.com/2014/04/29/leetcode-Isomorphic String/" data-id="cidlmbl4m0005v0anm6nplqb6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Leetcode/">Leetcode</a></li></ul>
@@ -355,7 +361,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Leetcode/">Leetcode</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/">c++</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Leetcode/">Leetcode</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/">c++</a><span class="tag-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -364,7 +370,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Leetcode/" style="font-size: 20px;">Leetcode</a><a href="/tags/c/" style="font-size: 10px;">c++</a>
+      <a href="/tags/Leetcode/" style="font-size: NaNpx;">Leetcode</a><a href="/tags/c/" style="font-size: NaNpx;">c++</a>
     </div>
   </div>
 
@@ -389,7 +395,7 @@
           </li>
         
           <li>
-            <a href="/2015/08/13/c++函数/">c++ 函数</a>
+            <a href="/2015/08/21/c++函数/">c++ 函数</a>
           </li>
         
           <li>
