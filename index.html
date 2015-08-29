@@ -83,8 +83,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="LVS简介">LVS简介</h2><pre><code>首先简单介绍一下LVS (Linux <span class="keyword">Virtual</span> Server)到底是什么东西，其实它是一种集群(Cluster)技术，采用IP负载均衡技术和基于内容请求分发技术。调度器具有很好的吞吐率，将请求均衡地转移到不同的服务器上执行，且调度器自动屏蔽掉服务器的故障，从而将一组服务器构成一个高性能的、高可用的虚拟服务器。整个服务器集群的结构对客户是透明的，而且无需修改客户端和服务器端的程序。
-</code></pre><p>为此，在设计时需要考虑系统的透明性、可伸缩性、高可用性和易管理性。</p>
+        <h2 id="LVS简介">LVS简介</h2><p>   首先简单介绍一下LVS (Linux Virtual Server)到底是什么东西，其实它是一种集群(Cluster)技术，采用IP负载均衡技术和基于内容请求分发技术。调度器具有很好的吞吐率，将请求均衡地转移到不同的服务器上执行，且调度器自动屏蔽掉服务器的故障，从而将一组服务器构成一个高性能的、高可用的虚拟服务器。整个服务器集群的结构对客户是透明的，而且无需修改客户端和服务器端的程序。<br>为此，在设计时需要考虑系统的透明性、可伸缩性、高可用性和易管理性。</p>
 <h2 id="LVS组成">LVS组成</h2><ol>
 <li>负载调度器(load balancer/ Director)，它是整个集群对外面的前端机，负责将客户的请求发送到一组服务器上执行，而客户认为服务是来自一个IP地址(我们可称之为虚拟IP地址)上的。</li>
 <li>服务器池(server pool/ Realserver)，是一组真正执行客户请求的服务器，执行的服务一般有WEB、MAIL、FTP和DNS等。</li>
@@ -105,13 +104,12 @@
 <li>优点：VS/DR调度器只处理客户到服务器端的连接，响应数据可以直接从独立的网络路由返回给客户。LVS集群系统的扩展性好；没有IP隧道的开销；</li>
 <li>缺点：要求负载调度器与实际服务器都有一块网卡连在同一物理网段上（必须在同一个网段上）；</li>
 </ol>
-<h2 id="负载均衡调度算法">负载均衡调度算法</h2><pre><code>◆最少的连接方式<span class="comment">(Least Connection)</span>：传递新的连接给那些进行最少连接处理的服务器。当其中某个服务器发生第二到第<span class="number">7</span> 层的故障，BIG-IP 就把其从服务器队列中拿出，不参加下一次的用户请求的分配, 直到其恢复正常。
-</code></pre><p>　　◆最快模式(Fastest)：传递连接给那些响应最快的服务器。当其中某个服务器发生第二到第7 层的故障，BIG-IP 就把其从服务器队列中拿出，不参加下一次的用户请求的分配，直到其恢复正常。<br>　　◆观察模式(Observed)：连接数目和响应时间以这两项的最佳平衡为依据为新的请求选择服务器。当其中某个服务器发生第二到第7 层的故障，BIG-IP就把其从服务器队列中拿出，不参加下一次的用户请求的分配，直到其恢复正常。<br>　　◆预测模式(Predictive)：BIG-IP利用收集到的服务器当前的性能指标，进行预测分析，选择一台服务器在下一个时间片内，其性能将达到最佳的服务器相应用户的请求。(被BIG-IP 进行检测)<br>　　◆动态性能分配(Dynamic Ratio-APM):BIG-IP 收集到的应用程序和应用服务器的各项性能参数，动态调整流量分配。<br>　　◆动态服务器补充(Dynamic Server Act.):当主服务器群中因故障导致数量减少时，动态地将备份服务器补充至主服务器群。<br>　　◆服务质量(QoS):按不同的优先级对数据流进行分配。<br>　　◆服务类型(ToS): 按不同的服务类型(在Type of Field中标识)负载均衡对数据流进行分配。<br>　　◆规则模式：针对不同的数据流设置导向规则，用户可自行。</p>
+<h2 id="负载均衡调度算法">负载均衡调度算法</h2><p>　　◆最少的连接方式(Least Connection)：传递新的连接给那些进行最少连接处理的服务器。当其中某个服务器发生第二到第7 层的故障，BIG-IP 就把其从服务器队列中拿出，不参加下一次的用户请求的分配, 直到其恢复正常。<br>　　◆最快模式(Fastest)：传递连接给那些响应最快的服务器。当其中某个服务器发生第二到第7 层的故障，BIG-IP 就把其从服务器队列中拿出，不参加下一次的用户请求的分配，直到其恢复正常。<br>　　◆观察模式(Observed)：连接数目和响应时间以这两项的最佳平衡为依据为新的请求选择服务器。当其中某个服务器发生第二到第7 层的故障，BIG-IP就把其从服务器队列中拿出，不参加下一次的用户请求的分配，直到其恢复正常。<br>　　◆预测模式(Predictive)：BIG-IP利用收集到的服务器当前的性能指标，进行预测分析，选择一台服务器在下一个时间片内，其性能将达到最佳的服务器相应用户的请求。(被BIG-IP 进行检测)<br>　　◆动态性能分配(Dynamic Ratio-APM):BIG-IP 收集到的应用程序和应用服务器的各项性能参数，动态调整流量分配。<br>　　◆动态服务器补充(Dynamic Server Act.):当主服务器群中因故障导致数量减少时，动态地将备份服务器补充至主服务器群。<br>　　◆服务质量(QoS):按不同的优先级对数据流进行分配。<br>　　◆服务类型(ToS): 按不同的服务类型(在Type of Field中标识)负载均衡对数据流进行分配。<br>　　◆规则模式：针对不同的数据流设置导向规则，用户可自行。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="zhufangxing.com/2015/08/29/LVS负载均衡/" data-id="cidwrjnvw0000wganjqysggec" class="article-share-link">Share</a>
+      <a data-url="zhufangxing.com/2015/08/29/LVS负载均衡/" data-id="cidwrpe5h0000pwans5oj9kgl" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LVS/">LVS</a></li></ul>
@@ -198,7 +196,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="zhufangxing.com/2015/08/21/常见面试题/" data-id="cidwrjnx70003wganh1cpucbx" class="article-share-link">Share</a>
+      <a data-url="zhufangxing.com/2015/08/21/常见面试题/" data-id="cidwrpe6s0003pwanrijd5128" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li></ul>
@@ -240,7 +238,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="zhufangxing.com/2015/08/21/c++函数/" data-id="cidwrjnx7000cwgang2hzkxli" class="article-share-link">Share</a>
+      <a data-url="zhufangxing.com/2015/08/21/c++函数/" data-id="cidwrpe6s000cpwan6if2de5m" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li></ul>
@@ -291,7 +289,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="zhufangxing.com/2015/05/01/leetcode-ICourse Schedule/" data-id="cidwrjnx70009wgan3rm634ql" class="article-share-link">Share</a>
+      <a data-url="zhufangxing.com/2015/05/01/leetcode-ICourse Schedule/" data-id="cidwrpe6s0009pwanemltv8ws" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Leetcode/">Leetcode</a></li></ul>
@@ -337,7 +335,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="zhufangxing.com/2015/04/29/leetcode-Isomorphic String/" data-id="cidwrjnx70006wganrtewitxi" class="article-share-link">Share</a>
+      <a data-url="zhufangxing.com/2015/04/29/leetcode-Isomorphic String/" data-id="cidwrpe6s0006pwanke9tz8zb" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Leetcode/">Leetcode</a></li></ul>
@@ -384,7 +382,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="zhufangxing.com/2014/05/01/hello-world/" data-id="cidwrjnx7000bwganm0ewj0qh" class="article-share-link">Share</a>
+      <a data-url="zhufangxing.com/2014/05/01/hello-world/" data-id="cidwrpe6s000bpwan9g9kp23x" class="article-share-link">Share</a>
       
       
     </footer>
