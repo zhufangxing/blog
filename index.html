@@ -61,6 +61,68 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-LVS负载均衡" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/08/29/LVS负载均衡/" class="article-date">
+  <time datetime="2015-08-29T07:21:25.000Z" itemprop="datePublished">2015-08-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/08/29/LVS负载均衡/">LVS 三种负载均衡方式</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="LVS简介">LVS简介</h2><pre><code>首先简单介绍一下LVS (Linux <span class="keyword">Virtual</span> Server)到底是什么东西，其实它是一种集群(Cluster)技术，采用IP负载均衡技术和基于内容请求分发技术。调度器具有很好的吞吐率，将请求均衡地转移到不同的服务器上执行，且调度器自动屏蔽掉服务器的故障，从而将一组服务器构成一个高性能的、高可用的虚拟服务器。整个服务器集群的结构对客户是透明的，而且无需修改客户端和服务器端的程序。
+</code></pre><p>为此，在设计时需要考虑系统的透明性、可伸缩性、高可用性和易管理性。</p>
+<h2 id="LVS组成">LVS组成</h2><ol>
+<li>负载调度器(load balancer/ Director)，它是整个集群对外面的前端机，负责将客户的请求发送到一组服务器上执行，而客户认为服务是来自一个IP地址(我们可称之为虚拟IP地址)上的。</li>
+<li>服务器池(server pool/ Realserver)，是一组真正执行客户请求的服务器，执行的服务一般有WEB、MAIL、FTP和DNS等。</li>
+<li>共享存储(shared storage)，它为服务器池提供一个共享的存储区，这样很容易使得服务器池拥有相同的内容，提供相同的服务。</li>
+</ol>
+<h2 id="LVS负载均衡方式">LVS负载均衡方式</h2><h3 id="Virtual_Server_via_Network_Address_Translation_NAT(VS/NAT)（通过网络地址转换）">Virtual Server via Network Address Translation NAT(VS/NAT)（通过网络地址转换）</h3><ol>
+<li>处理方式：调度器接收到请求后，通过地址转换转给一台VS执行，VS执行经由调度器返回给用户。（类比网关）</li>
+<li>优点：VS/NAT 的优点是服务器可以运行任何支持TCP/IP的操作系统，它只需要一个IP地址配置在调度器上，服务器组可以用私有的IP地址。</li>
+<li>缺点：它的伸缩能力有限，当服务器结点数目升到20时，调度器本身有可能成为系统的新瓶颈，因为在VS/NAT中请求和响应报文都需要通过负载调度器。</li>
+</ol>
+<h3 id="Virtual_Server_via_IP_Tunneling(VS/TUN)（IP隧道方式）">Virtual Server via IP Tunneling(VS/TUN)（IP隧道方式）</h3><ol>
+<li>处理方式：IP隧道(IP tunneling)是将一个IP报文封装在另一个IP报文的技术，这可以使得目标为一个IP地址的数据报文能被封装和转发到另一个IP地址。IP隧道技术亦称为IP封装技术(IP encapsulation)。IP隧道主要用于移动主机和虚拟私有网络(Virtual Private Network)，在其中隧道都是静态建立的，隧道一端有一个IP地址，另一端也有唯一的IP地址。（调度器收到请求-&gt;添加VS IP封装-&gt;隧道转发-&gt;处理-&gt;直接返回用户（源地址使用调度器地址？））</li>
+<li>优点：负载调度器只将请求调度到不同的后端服务器，后端服务器将应答的数据直接返回给用户。这样，负载调度器就可以处理大量的请求，它甚至可以调度百台以上的服务器(同等规模的服务器)，而它不会成为系统的瓶颈。所以，VS/TUN可以极大地增加负载调度器调度的服务器数量。</li>
+<li>缺点：所有的服务器必须支持“IP Tunneling”或者“IP Encapsulation”协议；VS/TUN的后端服务器主要运行Linux操作系统；IP隧道的开销；</li>
+</ol>
+<h3 id="Virtual_Server_via_Direct_Routing(VS/DR)（修改mac地址，直接路由）">Virtual Server via Direct Routing(VS/DR)（修改mac地址，直接路由）</h3><ol>
+<li>处理方式：VS/DR方式是通过改写请求报文中的MAC地址部分来实现的。不修改也不封装IP报文，而是将数据帧的MAC地址改为选出服务器的MAC地址，再将修改后的数据帧在与服务器组的局域网上发送。请求也是由vs处理完后直接返回用户。</li>
+<li>优点：VS/DR调度器只处理客户到服务器端的连接，响应数据可以直接从独立的网络路由返回给客户。LVS集群系统的扩展性好；没有IP隧道的开销；</li>
+<li>缺点：要求负载调度器与实际服务器都有一块网卡连在同一物理网段上（必须在同一个网段上）；</li>
+</ol>
+<h2 id="负载均衡调度算法">负载均衡调度算法</h2><pre><code>◆最少的连接方式<span class="comment">(Least Connection)</span>：传递新的连接给那些进行最少连接处理的服务器。当其中某个服务器发生第二到第<span class="number">7</span> 层的故障，BIG-IP 就把其从服务器队列中拿出，不参加下一次的用户请求的分配, 直到其恢复正常。
+</code></pre><p>　　◆最快模式(Fastest)：传递连接给那些响应最快的服务器。当其中某个服务器发生第二到第7 层的故障，BIG-IP 就把其从服务器队列中拿出，不参加下一次的用户请求的分配，直到其恢复正常。<br>　　◆观察模式(Observed)：连接数目和响应时间以这两项的最佳平衡为依据为新的请求选择服务器。当其中某个服务器发生第二到第7 层的故障，BIG-IP就把其从服务器队列中拿出，不参加下一次的用户请求的分配，直到其恢复正常。<br>　　◆预测模式(Predictive)：BIG-IP利用收集到的服务器当前的性能指标，进行预测分析，选择一台服务器在下一个时间片内，其性能将达到最佳的服务器相应用户的请求。(被BIG-IP 进行检测)<br>　　◆动态性能分配(Dynamic Ratio-APM):BIG-IP 收集到的应用程序和应用服务器的各项性能参数，动态调整流量分配。<br>　　◆动态服务器补充(Dynamic Server Act.):当主服务器群中因故障导致数量减少时，动态地将备份服务器补充至主服务器群。<br>　　◆服务质量(QoS):按不同的优先级对数据流进行分配。<br>　　◆服务类型(ToS): 按不同的服务类型(在Type of Field中标识)负载均衡对数据流进行分配。<br>　　◆规则模式：针对不同的数据流设置导向规则，用户可自行。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="zhufangxing.com/2015/08/29/LVS负载均衡/" data-id="cidwrjnvw0000wganjqysggec" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LVS/">LVS</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-常见面试题" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/08/21/常见面试题/" class="article-date">
@@ -136,7 +198,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="zhufangxing.com/2015/08/21/常见面试题/" data-id="cidlmijj00003xcanpeuivsgz" class="article-share-link">Share</a>
+      <a data-url="zhufangxing.com/2015/08/21/常见面试题/" data-id="cidwrjnx70003wganh1cpucbx" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li></ul>
@@ -178,7 +240,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="zhufangxing.com/2015/08/21/c++函数/" data-id="cidlmijhy0000xcancmzj51il" class="article-share-link">Share</a>
+      <a data-url="zhufangxing.com/2015/08/21/c++函数/" data-id="cidwrjnx7000cwgang2hzkxli" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li></ul>
@@ -229,7 +291,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="zhufangxing.com/2015/05/01/leetcode-ICourse Schedule/" data-id="cidlmijj70008xcan0vjyqx4m" class="article-share-link">Share</a>
+      <a data-url="zhufangxing.com/2015/05/01/leetcode-ICourse Schedule/" data-id="cidwrjnx70009wgan3rm634ql" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Leetcode/">Leetcode</a></li></ul>
@@ -275,7 +337,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="zhufangxing.com/2015/04/29/leetcode-Isomorphic String/" data-id="cidlmijj40005xcannqdkb790" class="article-share-link">Share</a>
+      <a data-url="zhufangxing.com/2015/04/29/leetcode-Isomorphic String/" data-id="cidwrjnx70006wganrtewitxi" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Leetcode/">Leetcode</a></li></ul>
@@ -322,7 +384,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="zhufangxing.com/2014/05/01/hello-world/" data-id="cidlmijj9000axcanfajyjjb9" class="article-share-link">Share</a>
+      <a data-url="zhufangxing.com/2014/05/01/hello-world/" data-id="cidwrjnx7000bwganm0ewj0qh" class="article-share-link">Share</a>
       
       
     </footer>
@@ -343,7 +405,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Leetcode/">Leetcode</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/">c++</a><span class="tag-list-count">2</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/LVS/">LVS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Leetcode/">Leetcode</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/">c++</a><span class="tag-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -352,7 +414,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Leetcode/" style="font-size: NaNpx;">Leetcode</a><a href="/tags/c/" style="font-size: NaNpx;">c++</a>
+      <a href="/tags/LVS/" style="font-size: 10px;">LVS</a><a href="/tags/Leetcode/" style="font-size: 20px;">Leetcode</a><a href="/tags/c/" style="font-size: 20px;">c++</a>
     </div>
   </div>
 
@@ -361,7 +423,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">May 2014</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">May 2014</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -371,6 +433,10 @@
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2015/08/29/LVS负载均衡/">LVS 三种负载均衡方式</a>
+          </li>
         
           <li>
             <a href="/2015/08/21/常见面试题/">c++ 常见面试题</a>
@@ -386,10 +452,6 @@
         
           <li>
             <a href="/2015/04/29/leetcode-Isomorphic String/">Leetcode -- Isomorphic Strings -- python解法</a>
-          </li>
-        
-          <li>
-            <a href="/2014/05/01/hello-world/">Hello World</a>
           </li>
         
       </ul>
